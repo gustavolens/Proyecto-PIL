@@ -11,20 +11,13 @@ class Estudiante:
         self.edad = edad 
 
     def agregar(self, Nombre, Dni, Edad):
-        """Crear objeto y agregarlo a la lista.
-        Args:
-            Nombre (string): nombre de estudiante.
-            Dni (int): sirve como primary key.
-            Edad (int): edad de estudiante.
+        """Crear objeto y agregarlo a lista_estudiante.
         """
         estudiante = Estudiante(Nombre, Dni, Edad)
         lista_estudiante.append(estudiante)
 
     def mostrar(self, estudiante):
-        """Muestrar los datos del objeto.
-
-        Args:
-            estudiante (objeto): datos del estudiante.
+        """Mostrar los datos del objeto o estudiante.
         """
         print("Nombre: ", estudiante.nombre)
         print("DNI: ", estudiante.dni)
@@ -32,14 +25,8 @@ class Estudiante:
         print("\n")
 
     def buscar_por_dni(self, dni):
-        """Recorrer la lista_estudiante que contiene los objetos y retorna el índice del objeto en la lista,
+        """Recorrer lista_estudiante que contiene los objetos y retornar el índice del objeto en la lista,
         de acuerdo con el DNI.
-
-        Args:
-            dni (int): sirve comor primary key.
-
-        Returns:
-            índice.
         """
         for i in range(lista_estudiante.__len__()):
             if dni == lista_estudiante[i].dni:
