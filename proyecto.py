@@ -37,26 +37,28 @@ class Estudiante:
         """
         clave = instanciar.buscar_por_dni(dni)
         del lista_estudiante[clave]
-    
-# print("\nSeleccione la opción:")
-# print("\n1. Agregar estudiante.\n2. Mostrar listado de estudiante.\n3. Eliminar detalles de estudiante.\n4. Salir."
-# opcion = input()
 
-instanciar = Estudiante('', '', 00)
-# Agregar
-# nombre = input('Ingrese nombre: ')
-# dni = int(input('Ingrese DNI: '))
-# edad = int(input('Ingrese edad: '))
-# instanciar.agregar(nombre, dni, edad)
+instanciar = Estudiante('', '', 00)    
+print("\nSeleccione la opción:")
+print("\n1. Agregar estudiante.\n2. Mostrar listado de estudiante.\n3. Eliminar detalles de estudiante.\n4. Salir.")
+opcion = input('Ingresar opción: ')
 
-instanciar.agregar('Jose', 2332324, 19)
-instanciar.agregar('Juan', 2, 14)
-instanciar.agregar('Raul', 4324324, 16)
-
-# Mostrar todos:
-for i in range(len(lista_estudiante)):
-    instanciar.mostrar(lista_estudiante[i])
-
-# Eliminar por dni:
-dni = int(input('Ingrese el DNI para eliminar entrada de estudiante: '))
-instanciar.eliminar(dni)
+match opcion:
+    case 1:
+        # nombre = input('Ingrese nombre: ')
+        # dni = int(input('Ingrese DNI: '))
+        # edad = int(input('Ingrese edad: '))
+        # instanciar.agregar(nombre, dni, edad)
+        instanciar.agregar('Jose', 2332324, 19)
+        instanciar.agregar('Juan', 2, 14)
+        instanciar.agregar('Raul', 4324324, 16)
+    case 2:
+        # Mostrar todos:
+        for i in range(len(lista_estudiante)):
+            instanciar.mostrar(lista_estudiante[i])
+    case 3:
+        # Eliminar por dni:
+        dni = int(input('Ingrese el DNI para eliminar entrada de estudiante: '))
+        instanciar.eliminar(dni)
+    case _:
+        print('Invalid.')
