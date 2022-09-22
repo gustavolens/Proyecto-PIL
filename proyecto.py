@@ -42,8 +42,8 @@ class Estudiante:
 instanciar = Estudiante('', '', 00, '')    
 
 def menu_estudiante():
-    print("\nSeleccione la opción:")
-    print("\n1. Agregar estudiante.\n2. Mostrar listado de estudiante.\n3. Eliminar detalles de estudiante.\n4. Salir.\n")
+    print("\n-----------Seleccione una opción-----------")
+    print("\n1. Agregar estudiante.\n2. Mostrar listado de estudiante.\n3. Eliminar entrada de estudiante.\n4. Salir.\n")
     return int(input('Ingresar opción: '))
 
 opcion = 0
@@ -52,22 +52,35 @@ while opcion != 4:
     opcion = menu_estudiante()
     match opcion:
         case 1:
-            # nombre = input('Ingrese nombre: ')
-            # dni = int(input('Ingrese DNI: '))
-            # edad = int(input('Ingrese edad: '))
-            # instanciar.agregar(nombre, dni, edad)
-            instanciar.agregar('Jose', 2332324, 19, 'Quimica')
+            nombre = input('Ingrese nombre: ')
+            dni = int(input('Ingrese DNI: '))
+            edad = int(input('Ingrese edad: '))
+            curso = input('Ingrese curso: ')
+            instanciar.agregar(nombre, dni, edad, curso)
+            print("***Entrada exitosa.***")
         case 2:
             # Mostrar todos:
-            for i in range(len(lista_estudiante)):
-                instanciar.mostrar(lista_estudiante[i])
-            if lista_estudiante == []:
-                print("No hay registros.")
+            if lista_estudiante != []:
+                print("--------Listado--------")
+                for i in range(len(lista_estudiante)):
+                    instanciar.mostrar(lista_estudiante[i])
+            else:
+                print("*** No hay registros. ***")
         case 3:
             # Eliminar por dni:
-            dni = int(input('Ingrese el DNI para eliminar entrada de estudiante: '))
-            instanciar.eliminar(dni)
+            if lista_estudiante != []:
+                while True:
+                    try:
+                        dni = int(input('Ingrese el DNI para eliminar entrada de estudiante: '))
+                        instanciar.eliminar(dni)
+                        print("\n *** Ha eliminado la entrada. ***")
+                        break
+                    except BaseException:
+                        print("Ingrese un DNI válido.")
+            else:
+                print("*** No hay registros. ***")
         case 4:
             break
-    opcion = int(input('\nIngrese 4 para salir o 1 para volver: '))
+        case _:
+            print("Ingresar una opción válida.")
 print("Gracias, vuelva prontos.")
