@@ -1,28 +1,29 @@
-# Sistema gestor de base de datos con alumnos y profesores.
+# Sistema gestor de base de datos con alumnos.
 
-# No lo hice complejo, procuré plasmar los conceptos: clases y herencia.
+# No lo hice complejo, procuré plasmar los conceptos de clase.
 
 lista_estudiante = []
 class Estudiante:
     # Constructor:
-    def __init__(self, nombre, dni, edad):
+    def __init__(self, nombre, dni, edad, curso):
         self.nombre = nombre
         self.dni = dni
         self.edad = edad 
+        self.curso = curso
 
-    def agregar(self, Nombre, Dni, Edad):
+    def agregar(self, Nombre, Dni, Edad, Curso):
         """Crear objeto y agregarlo a lista_estudiante.
         """
-        estudiante = Estudiante(Nombre, Dni, Edad)
+        estudiante = Estudiante(Nombre, Dni, Edad, Curso)
         lista_estudiante.append(estudiante)
 
     def mostrar(self, estudiante):
         """Mostrar los datos del objeto o estudiante.
         """
-        print("Nombre: ", estudiante.nombre)
+        print("\nNombre: ", estudiante.nombre)
         print("DNI: ", estudiante.dni)
         print("Edad: ", estudiante.edad)
-        print("\n")
+        print("Curso: ", estudiante.curso)
 
     def buscar_por_dni(self, dni):
         """Recorrer lista_estudiante que contiene los objetos y retornar el índice del objeto en la lista,
@@ -38,27 +39,35 @@ class Estudiante:
         clave = instanciar.buscar_por_dni(dni)
         del lista_estudiante[clave]
 
-instanciar = Estudiante('', '', 00)    
-print("\nSeleccione la opción:")
-print("\n1. Agregar estudiante.\n2. Mostrar listado de estudiante.\n3. Eliminar detalles de estudiante.\n4. Salir.")
-opcion = input('Ingresar opción: ')
+instanciar = Estudiante('', '', 00, '')    
 
-match opcion:
-    case 1:
-        # nombre = input('Ingrese nombre: ')
-        # dni = int(input('Ingrese DNI: '))
-        # edad = int(input('Ingrese edad: '))
-        # instanciar.agregar(nombre, dni, edad)
-        instanciar.agregar('Jose', 2332324, 19)
-        instanciar.agregar('Juan', 2, 14)
-        instanciar.agregar('Raul', 4324324, 16)
-    case 2:
-        # Mostrar todos:
-        for i in range(len(lista_estudiante)):
-            instanciar.mostrar(lista_estudiante[i])
-    case 3:
-        # Eliminar por dni:
-        dni = int(input('Ingrese el DNI para eliminar entrada de estudiante: '))
-        instanciar.eliminar(dni)
-    case _:
-        print('Invalid.')
+def menu_estudiante():
+    print("\nSeleccione la opción:")
+    print("\n1. Agregar estudiante.\n2. Mostrar listado de estudiante.\n3. Eliminar detalles de estudiante.\n4. Salir.\n")
+    return int(input('Ingresar opción: '))
+
+opcion = 0
+
+while opcion != 4:
+    opcion = menu_estudiante()
+    match opcion:
+        case 1:
+            # nombre = input('Ingrese nombre: ')
+            # dni = int(input('Ingrese DNI: '))
+            # edad = int(input('Ingrese edad: '))
+            # instanciar.agregar(nombre, dni, edad)
+            instanciar.agregar('Jose', 2332324, 19, 'Quimica')
+        case 2:
+            # Mostrar todos:
+            for i in range(len(lista_estudiante)):
+                instanciar.mostrar(lista_estudiante[i])
+            if lista_estudiante == []:
+                print("No hay registros.")
+        case 3:
+            # Eliminar por dni:
+            dni = int(input('Ingrese el DNI para eliminar entrada de estudiante: '))
+            instanciar.eliminar(dni)
+        case 4:
+            break
+    opcion = int(input('\nIngrese 4 para salir o 1 para volver: '))
+print("Gracias, vuelva prontos.")
